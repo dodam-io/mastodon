@@ -90,6 +90,12 @@ WORKDIR /opt/mastodon
 RUN OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder rails assets:precompile && \
     yarn cache clean
 
+# Set custom patch stuffs
+ARG GITHUB_REPOSITORY
+ENV GITHUB_REPOSITORY=$GITHUB_REPOSITORY
+ARG SOURCE_TAG
+ENV SOURCE_TAG=$SOURCE_TAG
+
 # Set the work dir and the container entry point
 ENTRYPOINT ["/usr/bin/tini", "--"]
 EXPOSE 3000 4000

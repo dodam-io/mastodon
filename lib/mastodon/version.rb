@@ -21,7 +21,7 @@ module Mastodon
     end
 
     def suffix
-      ''
+      source_tag&.match(/(\+dodam\d+)$/)&.[](1) or ''
     end
 
     def to_a
